@@ -19,7 +19,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = `${process.env.REACT_APP_API}/api/v1/auth/login`;
+      const url = "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/auth/login";
       const res = await axios.post(url, {
         email,
         password,
