@@ -35,7 +35,8 @@ const Header = () => {
         <Link to="/" className="flex items-center gap-4 ml-7">
           <div className="flex items-center ">
             <div className=" md:py-0 w-28">
-              <img src="/src/assets/text_outfit_com.png" alt="logo-png" />
+              {/* <img src="/src/assets/text_outfit_com.png" alt="logo-png" /> */}
+              <span className=" text-white text-2xl font-bold italic">urbanethnic</span>
             </div>
           </div>
         </Link>
