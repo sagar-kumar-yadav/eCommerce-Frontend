@@ -45,12 +45,9 @@ const Homepage = () => {
   const getAllProducts = async () => {
     try {
       const url = `https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/product-list/${page}`;
-      setLoading(true);
       const { data } = await axios.get(url);
-      setLoading(false);
       if (data.success) {
         setProducts(data.products);
-        setLoading(false);
         // console.log(data);
       }
     } catch (error) {
@@ -85,12 +82,9 @@ const Homepage = () => {
   const loadMore = async () => {
     try {
       const url = `https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/product-list/${page}`;
-      setLoading(true);
       const { data } = await axios.get(url);
-      setLoading(false);
       setProducts([...products, ...data?.products]);
     } catch (error) {
-      setLoading(false);
       console.log(error);
     }
   };
@@ -209,29 +203,19 @@ const Homepage = () => {
                   <button
                     className="bg-[#222] text-white w-40 rounded h-8 mt-2"
                     onClick={() => {
-                      setLoadingState(true);
                       setCart([...cart, p]);
                       localStorage.setItem(
                         "cart",
                         JSON.stringify([...cart, p])
                       );
                       toast.success("Item Add to Cart");
-                      setLoadingState(false);
                     }}
                   >
                     <div className="flex items-center gap-2">
                       <span class="material-symbols-outlined">
                         shopping_bag
                       </span>
-                      {isLoading ? (
-                        <Loader
-                          text={"Adding In"}
-                          color={"#ffffff"}
-                          loading={isLoading}
-                        />
-                      ) : (
-                        "add"
-                      )}
+                      add
                       {/* <span>add</span> */}
                     </div>
                   </button>
@@ -245,12 +229,22 @@ const Homepage = () => {
             <button
               className="bg-[#222] text-white rounded"
               onClick={(e) => {
+                setLoadingState(true);
                 e.preventDefault();
                 setPage(page + 1);
               }}
             >
               {/* {loading ? "Loading..." : "Load More"} */}
-              {loading ? <span>Loading...</span> : <span>Load More</span>}
+              {/* {loading ? <span>Loading...</span> : <span>Load More</span>} */}
+              {isLoading ? (
+                <Loader
+                  text={"Loading..."}
+                  color={"#ffffff"}
+                  loading={isLoading}
+                />
+              ) : (
+                "Load More"
+              )}
             </button>
           )}
         </div>
