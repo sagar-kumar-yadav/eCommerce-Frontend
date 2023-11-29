@@ -8,7 +8,9 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/cart";
 import toast from "react-hot-toast";
 import Banner from "../../components/HomeBanner/Banner";
-import MiddleBanner from "../../components/HomeBanner/MiddleBanner";
+import { FaRegHeart } from "react-icons/fa";
+import Loader from "../../components/Loader/Loader";
+import { useLoading } from "../../context/loading";
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -20,11 +22,13 @@ const Homepage = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(1);
   const [cart, setCart] = useCart();
+  const { isLoading, setLoadingState } = useLoading();
 
   // get all category
   const getAllCategory = async () => {
     try {
-      const url = "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/category/get-category";
+      const url =
+        "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/category/get-category";
       const { data } = await axios.get(url);
       if (data?.success) {
         setCategories(data?.category);
@@ -58,7 +62,8 @@ const Homepage = () => {
   // get total count
   const getTotal = async () => {
     try {
-      const url = "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/product-count";
+      const url =
+        "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/product-count";
       const { data } = await axios.get(url);
       setTotal(data?.total);
     } catch (error) {
@@ -104,7 +109,8 @@ const Homepage = () => {
   // get filtered product
   const filterProduct = async () => {
     try {
-      const url = "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/product-filter";
+      const url =
+        "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/product-filter";
       const { data } = await axios.post(url, { checked, radio });
       setProducts(data?.products);
     } catch (error) {
@@ -122,8 +128,7 @@ const Homepage = () => {
 
   return (
     <Layout title={"All Products - Best Offers"}>
-      <Banner/>
-      {/* <MiddleBanner/> */}
+      <Banner />
       <div className="home_container ">
         <div className="home_content w-[86%] m-auto pt-10">
           <div className="filterBar_cont pb-4 flex flex-col items-center justify-center sticky top-24">
@@ -180,25 +185,54 @@ const Homepage = () => {
                       onClick={() => navigate(`/product/${p.slug}`)}
                     />
                   </div>
-                  <div className="product_name">{p.name}</div>
-                  <div className="flex flex-col">
-                    {/* <p className="">{p.description.substring(0, 30)}</p> */}
-                    <p className="">₹ {p.price}</p>
+                  {/* wishlist button */}
+                  <div className=" absolute top-0">
+                    <button
+                      className=" cursor-pointer absolute w-8 h-8 left-16 top-8 transition duration-300"
+                      // onClick={handleToggleWishlist}
+                    >
+                      <FaRegHeart
+                        className="ml-2 cursor-pointer"
+                        color="#c7c1c1"
+                        size={24}
+                      />
+                    </button>
+                  </div>
+                  <div className=" w-[90%]">
+                    <span className="">{p.name}</span>
+                    <span className="flex flex-col">
+                      {/* <p className="">{p.description.substring(0, 30)}</p> */}
+                      <p className="">₹ {p.price}</p>
+                    </span>
                   </div>
 
                   <button
-                    className="bg-[#222] text-white w-24 rounded h-8"
+                    className="bg-[#222] text-white w-40 rounded h-8 mt-2"
                     onClick={() => {
+                      setLoadingState(true);
                       setCart([...cart, p]);
-                      localStorage.setItem('cart', JSON.stringify([...cart, p]))
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify([...cart, p])
+                      );
                       toast.success("Item Add to Cart");
+                      setLoadingState(false);
                     }}
                   >
                     <div className="flex items-center gap-2">
                       <span class="material-symbols-outlined">
                         shopping_bag
                       </span>
-                      <span>add</span>
+                      {isLoading ? (
+                        <Loader
+                          text={"Adding In"}
+                          color={"#ffffff"}
+                          loading={isLoading}
+                        />
+                      ) : (
+                        "add"
+                      )}
+                      {/* <span>add</span> */}
                     </div>
                   </button>
                 </div>

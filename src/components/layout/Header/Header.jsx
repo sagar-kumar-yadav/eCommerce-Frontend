@@ -36,7 +36,9 @@ const Header = () => {
           <div className="flex items-center ">
             <div className=" md:py-0 w-28">
               {/* <img src="/src/assets/text_outfit_com.png" alt="logo-png" /> */}
-              <span className=" text-white text-2xl font-bold italic">urbanethnic</span>
+              <span className=" text-white text-2xl font-bold italic">
+                urbanethnic
+              </span>
             </div>
           </div>
         </Link>
@@ -65,34 +67,9 @@ const Header = () => {
                     <span>Login</span>
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink
-                    to="/cart"
-                    className="flex md:inline-flex p-2 items-center mt-[14px]"
-                  >
-                    <span>
-                      <SlBag className=" fill-white" />
-                    </span>
-                  </NavLink>
-                  <div className=" relative h-4 w-4 rounded-full justify-center bottom-9 right-[-19px] flex items-center text-xs">
-                    <span>{cart?.length}</span>
-                  </div>
-                </li>
               </>
             ) : (
               <>
-                <ul className="flex items-center gap-2">
-                  <li>
-                    <NavLink
-                      to="/cart"
-                      className="flex md:inline-flex p-2 items-center "
-                    >
-                      <span>
-                        <FaRegHeart className=" fill-white" />
-                      </span>
-                    </NavLink>
-                  </li>
-                </ul>
                 <li className="nav-item dropdown">
                   <NavLink
                     className="nav-link dropdown-toggle nav-link dropdown-toggle flex md:inline-flex p-4 items-center "
@@ -126,8 +103,33 @@ const Header = () => {
                     </li>
                   </ul>
                 </li>
+                <ul className="flex items-center gap-2">
+                  <li>
+                    <NavLink
+                      to="/cart"
+                      className="flex md:inline-flex p-2 items-center "
+                    >
+                      <span>
+                        <FaRegHeart className=" fill-white" size={24} />
+                      </span>
+                    </NavLink>
+                  </li>
+                </ul>
               </>
             )}
+            <li>
+              <NavLink
+                to="/cart"
+                className="flex md:inline-flex p-2 items-center mt-[14px]"
+              >
+                <span>
+                  <SlBag className=" fill-white" size={24} />
+                </span>
+              </NavLink>
+              <div className=" relative h-4 w-4 rounded-full justify-center bottom-9 left-8 flex items-center text-xs">
+                <span>{cart?.length}</span>
+              </div>
+            </li>
           </ul>
         </div>
 

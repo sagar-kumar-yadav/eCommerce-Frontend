@@ -3,19 +3,23 @@ import Layout from "../../components/layout/Layout";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useLoading } from "../../context/loading";
+import Loader from "../../components/Loader/Loader";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [answer, setAnswer] = useState("");
+  const { isLoading, setLoadingState } = useLoading();
 
   const navigate = useNavigate();
 
   // form function
   const handleSubmit = async (e) => {
+    setLoadingState(true);
     e.preventDefault();
     try {
-      const url = "http://localhost:8080/api/v1/auth/forgot-password";
+      const url = "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/auth/forgot-password";
       const res = await axios.post(url, {
         email,
         newPassword,
@@ -25,12 +29,15 @@ const ForgotPassword = () => {
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
         navigate("/login");
+        setLoadingState(false);
       } else {
         toast.error(res.data.message);
+        setLoadingState(false);
       }
     } catch (error) {
       console.log(error);
       toast.error("something went wrong");
+      setLoadingState(false);
     }
   };
 
@@ -90,7 +97,16 @@ const ForgotPassword = () => {
             </div>
 
             <button className="reg-btn">
-              Reset Password
+            {isLoading ? (
+                <Loader
+                  text={"Forgetting"}
+                  color={"#ffffff"}
+                  loading={isLoading}
+                />
+              ) : (
+                "Reset Password"
+              )}
+              
               <i className="zmdi zmdi-arrow-right" />
             </button>
           </form>

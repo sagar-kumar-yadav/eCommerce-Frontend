@@ -58,7 +58,7 @@ const Search = () => {
                 >
                   <div className="product_img cursor-pointer">
                     <img
-                      src={`http://localhost:8080/api/v1/product/product-photo/${p._id}`}
+                      src={p.photos[0]}
                       className=""
                       alt={p.name}
                       onClick={() => navigate(`/product/${p.slug}`)}
