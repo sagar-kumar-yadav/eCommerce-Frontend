@@ -47,12 +47,12 @@ const ForgotPassword = () => {
         className="wrapper"
         style={{
           backgroundImage:
-            'url("src/assets/register/bg-registration-form-1.jpg")',
+            'url("/register/bg-registration-form-1.jpg")',
         }}
       >
         <div className="inner mt-40">
           <div className="image-holder">
-            <img src="src/assets/banner/banner11.jpg" alt="reg-girl-img" />
+            <img src="/banner/banner11.jpg" alt="reg-girl-img" />
           </div>
           <form onSubmit={handleSubmit}>
             <h3>Forget Password</h3>

@@ -45,7 +45,7 @@ const Register = () => {
         className="wrapper"
         style={{
           backgroundImage:
-            'url("src/assets/register/bg-registration-form-1.jpg")',
+            'url("/register/bg-registration-form-1.jpg")',
         }}
       >
         <div className="inner mt-40">

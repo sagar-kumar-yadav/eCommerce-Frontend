@@ -4,19 +4,19 @@ import { RxDot } from "react-icons/rx";
 
 const slides = [
   {
-    url: "src/assets/banner/banner2.webp",
+    url: "/banner/banner2.webp",
   },
   {
-    url: "src/assets/banner/banner3.webp",
+    url: "/banner/banner3.webp",
   },
   {
-    url: "src/assets/banner/banner1.webp",
+    url: "/banner/banner1.webp",
   },
   {
-    url: "src/assets/banner/banner5.webp",
+    url: "/banner/banner5.webp",
   },
   {
-    url: "src/assets/banner/banner4.webp",
+    url: "/banner/banner4.webp",
   },
 ];
 

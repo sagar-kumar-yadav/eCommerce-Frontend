@@ -54,15 +54,14 @@ const Login = () => {
       <div
         className="wrapper"
         style={{
-          backgroundImage:
-            'url("src/assets/register/bg-registration-form-1.jpg")',
+          backgroundImage: 'url("/register/bg-registration-form-1.jpg")',
         }}
       >
         <div className="inner">
           <div className="image-holder">
             <img
               // src="src/assets/register/registration-form-1.jpg"
-              src="src/assets/banner/banner11.jpg"
+              src="/banner/banner11.jpg"
               alt="reg-girl-img"
             />
           </div>
