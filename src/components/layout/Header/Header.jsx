@@ -5,16 +5,23 @@ import toast from "react-hot-toast";
 import logo from "../../../assets/logo.png";
 import logo_name from "../../../assets/text_outfit_com.png";
 import SearchInput from "../../form/SearchInput";
-import useCategory from "../../../hooks/useCategory";
 import { useCart } from "../../../context/cart";
 import { SlBag } from "react-icons/sl";
 import { FaRegHeart } from "react-icons/fa";
 import Navbar from "./Navbar";
+import { BiMenu } from "react-icons/bi";
+import { AiOutlineClose } from "react-icons/ai";
+import useCategory from "../../../hooks/useCategory";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const categories = useCategory();
   const [cart] = useCart();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen((prev) => !prev);
+  };
 
   // in this function we want to logout then we have to clear the local storage and then we navigate to login page
   const handleLogout = () => {
@@ -32,7 +39,10 @@ const Header = () => {
     <>
       <header className="flex justify-between items-center h-[70px] top-0 z-50 fixed bg-[#0a0e11] w-full">
         {/* logo and app name header here */}
-        <Link to="/" className="flex items-center gap-4 ml-7">
+        <Link
+          to="/"
+          className="flex items-center gap-4 ml-[4%] max-md:ml-[6%] max-sm:ml-[10%]"
+        >
           <div className="flex items-center ">
             <div className=" md:py-0 w-28">
               {/* <img src="/src/assets/text_outfit_com.png" alt="logo-png" /> */}
@@ -45,8 +55,8 @@ const Header = () => {
         <Navbar />
         <SearchInput />
 
-        <div className="min-w-[200px] p-2">
-          <ul className="flex items-center text-white mr-8">
+        <div className="min-w-[200px] px-12 max-lg:hidden">
+          <ul className="flex items-center text-white gap-2">
             {/* if not user then show register and login page ------------------------------------------  */}
             {!auth.user ? (
               <>
@@ -72,7 +82,7 @@ const Header = () => {
               <>
                 <li className="nav-item dropdown">
                   <NavLink
-                    className="nav-link dropdown-toggle nav-link dropdown-toggle flex md:inline-flex p-4 items-center "
+                    className="nav-link dropdown-toggle nav-link dropdown-toggle flex md:inline-flex items-center "
                     href="#"
                     role="button"
                     data-bs-toggle="dropdown"
@@ -132,15 +142,62 @@ const Header = () => {
             </li>
           </ul>
         </div>
-
-        <div className="ml-auto md:hidden text-gray-500 cursor-pointer">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-5 h-5 fill-current"
-            viewBox="0 0 24 24"
+        {/* mobile device */}
+        <div className=" lg:hidden fixed left-4 max-sm:left-2">
+          <button
+            type="button"
+            className="w-8"
+            aria-controls=",onile-menu"
+            aria-expanded="false"
+            onClick={toggleMenu}
           >
-            <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z" />
-          </svg>
+            <BiMenu
+              size={26}
+              className={`${isOpen ? "hidden" : "block"} text-white`}
+            />
+          </button>
+        </div>
+        <div className=" lg:hidden fixed left-4 max-sm:left-2">
+          <button
+            type="button"
+            className="w-8"
+            aria-controls=",onile-menu"
+            aria-expanded="false"
+            onClick={toggleMenu}
+          >
+            <AiOutlineClose
+              size={26}
+              className={`${isOpen ? "block" : "hidden"} text-white`}
+            />
+          </button>
+        </div>
+        <div
+          className={`${
+            isOpen ? "block pt-4" : "hidden"
+          } lg:hidden bg-white text-black `}
+        >
+          <div className="fixed top-[72px] left-0 bottom-0 text-black bg-white w-5/6 max-w-[20rem] max-sm:max-w-[15rem] flex flex-col">
+            {categories?.map((c) => (
+              <Link to={`/category/${c.slug}`} className="p-3 border  mt-3">
+                {c.name}{" "}
+              </Link>
+            ))}
+
+            <div className="flex justify-center relative top-40">
+              <NavLink
+                to="/register"
+                className="flex md:inline-flex p-2 items-center "
+              >
+                <span>Register</span>
+              </NavLink>
+              <NavLink
+                to="/login"
+                className="flex md:inline-flex p-2 items-center "
+              >
+                <span>Login</span>
+              </NavLink>
+            </div>
+          </div>
         </div>
       </header>
     </>
