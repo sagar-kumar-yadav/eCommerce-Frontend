@@ -23,7 +23,6 @@ import Login from "./pages/Auth/Login";
 import PageNotFound from "./pages/PageNotFound";
 import ProductForm from "./components/form/ProductFrom";
 
-
 const App = () => {
   return (
     <>
@@ -32,8 +31,9 @@ const App = () => {
         <Route path="/productForm" element={<ProductForm />} />
         <Route path="/product/:slug" element={<ProductDetails />} />
         <Route path="/categories" element={<Categories />} />
-        <Route path="/cart" element={<CartPage />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/cart" element={<CartPage />} />
+
         <Route path="/category/:slug" element={<CategoryProduct />} />
         <Route path="/search" element={<Search />} />
 
