@@ -3,7 +3,7 @@ import { useCart } from "../../context/cart";
 import { useAuth } from "../../context/auth";
 import Layout from "../../components/layout/Layout";
 import "/src/assets/css/cart.css";
-import { useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const CartPage = () => {
   const [cart, setCart] = useCart();
@@ -99,7 +99,10 @@ const CartPage = () => {
             </div>
 
             <div className="back-to-shop">
-              <a href="#">←</a>
+              <Link to="/">
+                <a href="#">←</a>
+              </Link>
+
               <span className="text-muted">Back to shop</span>
             </div>
           </div>

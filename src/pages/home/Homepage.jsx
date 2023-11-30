@@ -124,8 +124,8 @@ const Homepage = () => {
     <Layout title={"All Products - Best Offers"}>
       <Banner />
       <div className="home_container ">
-        <div className="home_content w-[86%] m-auto pt-10">
-          <div className="filterBar_cont pb-4 flex flex-col items-center justify-center sticky top-24">
+        <div className="home_content w-full m-auto pt-10 max-sm">
+          <div className="filterBar_cont pb-4 flex flex-col items-center justify-center sticky top-24 max-sm:hidden">
             {/* --------------------------------- category filter ------------------------------------- */}
             <div className="category_box_filter">
               <div className="filter_cat_header">Filter By Category</div>
@@ -165,13 +165,13 @@ const Homepage = () => {
           <div className="product_content ">
             {/* {JSON.stringify(radio, null, 4)} */}
 
-            <div className="all_products_show_cont">
+            <div className="flex flex-wrap">
               {products?.map((p) => (
                 <div
                   key={p._id}
-                  className="product_cont w-64 items-center justify-center p-3 mb-8"
+                  className="product_cont w-64 items-center justify-center p-3 mb-8 max-md:w-40"
                 >
-                  <div className="product_img cursor-pointer">
+                  <div className="product_img cursor-pointer max-md:w-36">
                     <img
                       src={p.photos[0]}
                       className=""
@@ -182,7 +182,7 @@ const Homepage = () => {
                   {/* wishlist button */}
                   <div className=" absolute top-0">
                     <button
-                      className=" cursor-pointer absolute w-8 h-8 left-16 top-8 transition duration-300"
+                      className=" cursor-pointer absolute w-8 h-8 left-16 top-8 transition duration-300 max-md:left-8"
                       // onClick={handleToggleWishlist}
                     >
                       <FaRegHeart
@@ -193,7 +193,8 @@ const Homepage = () => {
                     </button>
                   </div>
                   <div className=" w-[90%]">
-                    <span className="">{p.name}</span>
+                    <span className=" max-md:hidden">{p.name}</span>
+                    <span className=" max-md:block md:hidden">{p.name.substring(0, 12)}</span>
                     <span className="flex flex-col">
                       {/* <p className="">{p.description.substring(0, 30)}</p> */}
                       <p className="">₹ {p.price}</p>
@@ -201,7 +202,7 @@ const Homepage = () => {
                   </div>
 
                   <button
-                    className="bg-[#222] text-white w-40 rounded h-8 mt-2"
+                    className="bg-[#222] text-white w-40 rounded h-8 mt-2 max-md:w-24"
                     onClick={() => {
                       setCart([...cart, p]);
                       localStorage.setItem(
@@ -224,7 +225,7 @@ const Homepage = () => {
             </div>
           </div>
         </div>
-        <div className=" flex justify-center items-center p-10 pl-56">
+        <div className=" flex justify-center items-center p-10 pl-56 max-md:pl-0 max-md:p-0">
           {products && products.length < total && (
             <button
               className="bg-[#222] text-white rounded"
