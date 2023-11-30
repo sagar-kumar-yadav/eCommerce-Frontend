@@ -19,7 +19,8 @@ const ForgotPassword = () => {
     setLoadingState(true);
     e.preventDefault();
     try {
-      const url = "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/auth/forgot-password";
+      const url =
+        "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/auth/forgot-password";
       const res = await axios.post(url, {
         email,
         newPassword,
@@ -46,11 +47,10 @@ const ForgotPassword = () => {
       <div
         className="wrapper"
         style={{
-          backgroundImage:
-            'url("/register/bg-registration-form-1.jpg")',
+          backgroundImage: 'url("/register/bg-registration-form-1.jpg")',
         }}
       >
-        <div className="inner mt-40">
+        <div className="inner mt-40 max-sm:mt-16">
           <div className="image-holder">
             <img src="/banner/banner11.jpg" alt="reg-girl-img" />
           </div>
@@ -97,7 +97,7 @@ const ForgotPassword = () => {
             </div>
 
             <button className="reg-btn">
-            {isLoading ? (
+              {isLoading ? (
                 <Loader
                   text={"Forgetting"}
                   color={"#ffffff"}
@@ -106,7 +106,7 @@ const ForgotPassword = () => {
               ) : (
                 "Reset Password"
               )}
-              
+
               <i className="zmdi zmdi-arrow-right" />
             </button>
           </form>

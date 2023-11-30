@@ -20,30 +20,10 @@ const SearchInput = () => {
   };
 
   return (
-    // <div className="min-w-[23rem]">
-    //   <form
-    //
-    //     className="flex items-center h-10 border border-solid border-white outline-none "
-    //   >
-    //     <input
-    //       type="search"
-    //       className=" bg-transparent h-10 text-white  flex-grow border-none focus:outline-none focus:shadow-none"
-    //       placeholder="Search for products brand and more"
-    //       value={values.keyword}
-    //       onChange={(e) => setValues({ ...values, keyword: e.target.value })}
-    //     />
-    //     <button className=" w-10">
-    //       <span className="material-symbols-outlined  p-2 rounded-r-lg  h-10 text-white">
-    //         search
-    //       </span>
-    //     </button>
-    //   </form>
-    // </div>
-
     <div className=" h-10 min-w-[232px] w-[30%] flex items-center px-6 max-lg:hidden">
       <form onSubmit={handleSubmit} className="flex w-full items-center">
         <input
-          className="text-[#696e79] bg-transparent flex-grow h-10 border border-solid border-white outline-none"
+          className="bg-transparent flex-grow h-10 border border-solid border-white outline-none text-white pl-4"
           placeholder="Search for products brand and more"
           value={values.keyword}
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}

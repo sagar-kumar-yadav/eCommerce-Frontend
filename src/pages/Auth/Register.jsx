@@ -3,7 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../components/layout/Layout";
-import "./auth.css"
+import "./auth.css";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -18,7 +18,8 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:8080/api/v1/auth/register";
+      const url =
+        "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/auth/register";
       const res = await axios.post(url, {
         name,
         email,
@@ -44,17 +45,12 @@ const Register = () => {
       <div
         className="wrapper"
         style={{
-          backgroundImage:
-            'url("/register/bg-registration-form-1.jpg")',
+          backgroundImage: 'url("/register/bg-registration-form-1.jpg")',
         }}
       >
-        <div className="inner mt-40">
+        <div className="inner mt-40 max-sm:mt-16">
           <div className="image-holder">
-            <img
-              // src="src/assets/register/registration-form-1.jpg"
-              src="src/assets/banner/banner11.jpg"
-              alt="reg-girl-img"
-            />
+            <img src="/banner/banner11.jpg" alt="reg-girl-img" />
           </div>
           <form onSubmit={handleSubmit}>
             <h3>Registration Form</h3>

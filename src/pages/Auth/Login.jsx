@@ -57,7 +57,7 @@ const Login = () => {
           backgroundImage: 'url("/register/bg-registration-form-1.jpg")',
         }}
       >
-        <div className="inner">
+        <div className="inner mt-16">
           <div className="image-holder">
             <img
               // src="src/assets/register/registration-form-1.jpg"
