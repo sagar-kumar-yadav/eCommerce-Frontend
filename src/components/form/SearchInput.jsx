@@ -20,8 +20,8 @@ const SearchInput = () => {
   };
 
   return (
-    <div className=" h-10 min-w-[232px] w-[30%] flex items-center px-6 max-lg:hidden">
-      <form onSubmit={handleSubmit} className="flex w-full items-center">
+    <div className=" h-10 min-w-[232px] w-[30%] flex items-center px-6 max-sm:hidden max-lg:fixed left-[39%]">
+      <form onSubmit={handleSubmit} className="flex w-full items-center ">
         <input
           className="bg-transparent flex-grow h-10 border border-solid border-white outline-none text-white pl-4"
           placeholder="Search for products brand and more"

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/auth";
 import toast from "react-hot-toast";
 import logo from "../../../assets/logo.png";
@@ -12,15 +12,39 @@ import Navbar from "./Navbar";
 import { BiMenu } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 import useCategory from "../../../hooks/useCategory";
+import { IoSearch } from "react-icons/io5";
+import { useSearch } from "../../../context/search";
+import axios from "axios";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const categories = useCategory();
   const [cart] = useCart();
   const [isOpen, setIsOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [values, setValues] = useSearch();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const url = `https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/search/${values.keyword}`;
+      const { data } = await axios.get(url);
+      setValues({ ...values, results: data });
+      navigate("/search");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
+  };
+
+  const handleSearchClick = () => {
+    setIsSearchOpen((prevState) => !prevState);
+    // Hide the menu toggler icons when search is clicked
+    setIsOpen(false);
   };
 
   // in this function we want to logout then we have to clear the local storage and then we navigate to login page
@@ -41,7 +65,9 @@ const Header = () => {
         {/* logo and app name header here */}
         <Link
           to="/"
-          className="flex items-center gap-4 ml-[4%] max-md:ml-[6%] max-sm:ml-[10%]"
+          className={`flex items-center gap-4 ml-[2%] max-lg:ml-[7%] max-sm:ml-[9%] w-32 ${
+            isSearchOpen ? "hidden" : "block"
+          }`}
         >
           <div className="flex items-center ">
             <div className=" md:py-0 w-28">
@@ -55,12 +81,12 @@ const Header = () => {
         <Navbar />
         <SearchInput />
 
-        <div className="min-w-[200px] px-12 max-lg:hidden">
+        <div className=" px-12 max-md:px-4 max-lg:fixed right-0">
           <ul className="flex items-center text-white gap-2">
             {/* if not user then show register and login page ------------------------------------------  */}
             {!auth.user ? (
               <>
-                <li>
+                <li className="max-lg:hidden">
                   <NavLink
                     to="/register"
                     className="flex md:inline-flex p-2 items-center "
@@ -69,7 +95,7 @@ const Header = () => {
                   </NavLink>
                 </li>
 
-                <li>
+                <li className="max-lg:hidden">
                   <NavLink
                     to="/login"
                     className="flex md:inline-flex p-2 items-center "
@@ -80,7 +106,7 @@ const Header = () => {
               </>
             ) : (
               <>
-                <li className="nav-item dropdown">
+                <li className="nav-item dropdown max-lg:hidden">
                   <NavLink
                     className="nav-link dropdown-toggle nav-link dropdown-toggle flex md:inline-flex items-center "
                     href="#"
@@ -113,7 +139,46 @@ const Header = () => {
                     </li>
                   </ul>
                 </li>
-                <ul className="flex items-center gap-2">
+                {/* mobile menu */}
+                <div className=" sm:hidden fixed right-24">
+                  <button
+                    // className="w-12"
+                    className={`w-12 ${isSearchOpen ? "hidden" : "block"}`}
+                    onClick={handleSearchClick}
+                  >
+                    <IoSearch size={26} className=" text-white" />
+                  </button>
+                </div>
+                <div
+                  className={` sm:hidden ${isSearchOpen ? "block" : "hidden"}`}
+                >
+                  <form onSubmit={handleSubmit} className="flex items-center ">
+                    {isSearchOpen ? (
+                      <input
+                        type="text"
+                        placeholder="Search..."
+                        className="p-2 border border-gray-400 rounded bg-transparent h-8"
+                        value={values.keyword}
+                        onChange={(e) =>
+                          setValues({ ...values, keyword: e.target.value })
+                        }
+                      />
+                    ) : null}
+                    <button
+                      className="w-8 h-8 border-tl-4 border-bl-4 rounded-r-none text-[#282c3f]"
+                      onClick={handleSearchClick}
+                    >
+                      <AiOutlineClose size={26} className={`text-white `} />
+                    </button>
+                  </form>
+                </div>
+
+                {/* -------------------------------- */}
+                <ul
+                  className={`flex items-center gap-2 ${
+                    isSearchOpen ? "hidden" : "block"
+                  }`}
+                >
                   <li>
                     <NavLink
                       to="/cart"
@@ -127,7 +192,7 @@ const Header = () => {
                 </ul>
               </>
             )}
-            <li>
+            <li className={`${isSearchOpen ? "hidden" : "block"}`}>
               <NavLink
                 to="/cart"
                 className="flex md:inline-flex p-2 items-center mt-[14px]"
@@ -142,11 +207,13 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        {/* mobile device */}
+
+        {/* mobile device -----------------------------------------------------------------------*/}
         <div className=" lg:hidden fixed left-4 max-sm:left-2">
           <button
             type="button"
             className="w-8"
+            // className={`w-8 ${isSearchOpen ? "hidden" : "block"}`}
             aria-controls=",onile-menu"
             aria-expanded="false"
             onClick={toggleMenu}
@@ -161,6 +228,7 @@ const Header = () => {
           <button
             type="button"
             className="w-8"
+            // className={`w-8 ${isSearchOpen ? "hidden" : "block"}`}
             aria-controls=",onile-menu"
             aria-expanded="false"
             onClick={toggleMenu}
@@ -171,6 +239,7 @@ const Header = () => {
             />
           </button>
         </div>
+
         <div
           className={`${
             isOpen ? "block pt-4" : "hidden"

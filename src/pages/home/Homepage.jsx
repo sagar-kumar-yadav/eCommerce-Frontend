@@ -194,7 +194,9 @@ const Homepage = () => {
                   </div>
                   <div className=" w-[90%]">
                     <span className=" max-md:hidden">{p.name}</span>
-                    <span className=" max-md:block md:hidden">{p.name.substring(0, 12)}</span>
+                    <span className=" max-md:block md:hidden">
+                      {p.name.substring(0, 12)}
+                    </span>
                     <span className="flex flex-col">
                       {/* <p className="">{p.description.substring(0, 30)}</p> */}
                       <p className="">₹ {p.price}</p>
@@ -230,13 +232,12 @@ const Homepage = () => {
             <button
               className="bg-[#222] text-white rounded"
               onClick={(e) => {
-                setLoadingState(true);
+                setLoadingState(false);
                 e.preventDefault();
                 setPage(page + 1);
+                setLoadingState(true);
               }}
             >
-              {/* {loading ? "Loading..." : "Load More"} */}
-              {/* {loading ? <span>Loading...</span> : <span>Load More</span>} */}
               {isLoading ? (
                 <Loader
                   text={"Loading..."}
