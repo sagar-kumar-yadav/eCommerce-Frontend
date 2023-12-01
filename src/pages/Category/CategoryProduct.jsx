@@ -15,7 +15,7 @@ const CategoryProduct = () => {
 
   const getProductByCategory = async () => {
     try {
-      const url = `http://localhost:8080/api/v1/product/product-category/${params.slug}`;
+      const url = `https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/product-category/${params.slug}`;
       const { data } = await axios.get(url);
       console.log(data);
       setProducts(data?.products);
@@ -24,6 +24,7 @@ const CategoryProduct = () => {
       console.log(error);
     }
   };
+  console.log(products);
 
   return (
     <div>

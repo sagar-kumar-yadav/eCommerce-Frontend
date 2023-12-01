@@ -29,7 +29,7 @@ const SearchInput = () => {
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}
         />
         <button className="w-10 flex">
-          <span class="material-symbols-outlined h-5 p-[10px] box-content bg-[#f5f5f6] text-[#282c3f] font-light border-tl-4 border-bl-4 rounded-r-none">
+          <span className="material-symbols-outlined h-5 p-[10px] box-content bg-[#f5f5f6] text-[#282c3f] font-light border-tl-4 border-bl-4 rounded-r-none">
             search
           </span>
         </button>

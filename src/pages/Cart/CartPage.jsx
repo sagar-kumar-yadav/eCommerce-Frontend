@@ -42,8 +42,8 @@ const CartPage = () => {
   return (
     <Layout>
       <div className="card pt-28 shadow-none bg-[#e0e5e9]">
-        <div className="flex gap-4 ">
-          <div className="col-md-8 cart mb-8">
+        <div className="flex gap-4 max-md:flex-wrap">
+          <div className="col-md-8 cart max-md:w-full">
             <div className="title mb-10">
               <div className="row">
                 <div className="col">
@@ -81,7 +81,7 @@ const CartPage = () => {
                       {p.name}
                     </div>
                     <div className="row  text-sm font-bold text-[#212529]">
-                      $ {p.price}
+                      ₹ {p.price}
                     </div>
                   </div>
                   <div className="col">
@@ -93,7 +93,7 @@ const CartPage = () => {
                     </a>
                     <a href="#">+</a>
                   </div>
-                  <div className="col">€ 44.00</div>
+                  <div className="col">₹ {p.price}</div>
                 </div>
               ))}
             </div>
@@ -106,7 +106,7 @@ const CartPage = () => {
               <span className="text-muted">Back to shop</span>
             </div>
           </div>
-          <div className="col-md-4 summary h-fit sticky top-24">
+          <div className="col-md-4 summary h-fit sticky top-24 max-md:w-full">
             <div className="border-b border-solid border-[#dee2e6] pb-4">
               <h5 className="summary_heading mt-8 text-center">
                 <b>Summary</b>

@@ -247,7 +247,7 @@ const Header = () => {
         >
           <div className="fixed top-[70px] left-0 bottom-0 text-black bg-white w-5/6 max-w-[20rem] max-sm:max-w-[15rem] flex flex-col">
             {categories?.map((c) => (
-              <Link to={`/category/${c.slug}`} className="p-3 border  mt-3">
+              <Link to={`/category/${c.slug}`} className="p-3 border  mt-3" key={c._id}>
                 {c.name}{" "}
               </Link>
             ))}

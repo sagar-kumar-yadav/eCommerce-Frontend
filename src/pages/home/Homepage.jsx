@@ -215,7 +215,7 @@ const Homepage = () => {
                     }}
                   >
                     <div className="flex items-center gap-2">
-                      <span class="material-symbols-outlined">
+                      <span className="material-symbols-outlined">
                         shopping_bag
                       </span>
                       add

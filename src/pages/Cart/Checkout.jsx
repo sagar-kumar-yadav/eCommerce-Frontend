@@ -29,8 +29,8 @@ const Checkout = () => {
           <h1 className=" text-center">Checkout</h1>
         </section>
 
-        <div className="flex gap-4 w-[90%] m-auto max-w-[950px]">
-          <main className="w-[60%] flex flex-col gap-4">
+        <div className="flex gap-4 w-[90%] m-auto max-lg:flex-wrap">
+          <main className="w-[60%] flex flex-col gap-4 max-md:w-full">
             <div className=" bg-[#ffffff]">
               <div className="flex justify-between px-4 pt-3">
                 <h4 className=" text-base">My information</h4>
@@ -59,7 +59,7 @@ const Checkout = () => {
                   className="w-full text-sm"
                 />
               </div>
-              <div className="flex pt-3 gap-4 w-full">
+              <div className="flex pt-3 gap-4 w-full flex-wrap">
                 <div className="text-start flex flex-col">
                   <label htmlFor="">Town/City</label>
                   <input
@@ -87,7 +87,7 @@ const Checkout = () => {
             </div>
           </main>
 
-          <div className="col-md-4 summary h-fit sticky top-24 text-sm">
+          <div className="col-md-4 summary h-fit sticky top-24 text-sm max-md:w-full">
             <div className="border-b border-solid border-[#dee2e6] pb-4">
               <h5 className="summary_heading mt-8 text-base font-bold">
                 <span >Summary</span >
