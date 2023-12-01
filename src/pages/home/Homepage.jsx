@@ -137,9 +137,9 @@ const Homepage = () => {
             <div className="category_box_filter">
               <div className="filter_cat_header">Filter By Category</div>
               <div className="inner_cat_box">
-                {categories?.map((c) => (
+                {categories?.map((c, i) => (
                   <Checkbox
-                    key={c._id}
+                    key={i}
                     onChange={(e) => handleFilter(e.target.checked, c._id)}
                   >
                     {c.name}
@@ -153,8 +153,8 @@ const Homepage = () => {
               <div className="filter_cat_header">Filter By Price</div>
               <div className="inner_cat_box">
                 <Radio.Group onChange={(e) => setRadio(e.target.value)}>
-                  {Prices?.map((p) => (
-                    <div key={p._id}>
+                  {Prices?.map((p, i) => (
+                    <div key={i}>
                       <Radio value={p.array}>{p.name}</Radio>
                     </div>
                   ))}

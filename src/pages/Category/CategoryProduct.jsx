@@ -31,11 +31,6 @@ const CategoryProduct = () => {
   };
 
   return (
-    // <div>
-    //   <h1>Category Wise Products</h1>
-    //   <h1>{category?.name}</h1>
-    //   <h1>{products?.length} result found</h1>
-    // </div>
     <Layout>
       <div className="">
         <h1 className="mt-28 text-center text-4xl font-bold mb-8">
@@ -47,17 +42,17 @@ const CategoryProduct = () => {
             : `Products ${products?.length}`}
         </h6>
 
-        <div className="home_content w-[86%] m-auto pt-10">
+        <div className="home_content w-[86%] m-auto pt-10 max-md:w-[96%] max-lg:w-[94%]">
           <div className="product_content ">
             {/* {JSON.stringify(radio, null, 4)} */}
 
-            <div className="all_products_show_cont">
+            <div className="all_products_show_cont max-md:gap-8 max-lg:gap-8">
               {products?.map((p) => (
                 <div
                   key={p._id}
-                  className="product_cont w-64 items-center justify-center p-3 mb-8"
+                  className="product_cont items-center justify-center p-3 mb-8 max-md:w-40 max-lg:mb-0"
                 >
-                  <div className="product_img cursor-pointer">
+                  <div className="product_img cursor-pointer max-sm:w-36 max-lg:w-36">
                     <img
                       src={p.photos[0]}
                       className=""
@@ -65,7 +60,10 @@ const CategoryProduct = () => {
                       onClick={() => navigate(`/product/${p.slug}`)}
                     />
                   </div>
-                  <div className="product_name">{p.name}</div>
+                  <span className=" max-md:hidden max-md:text-sm">{p.name}</span>
+                  <span className=" max-md:block md:hidden">
+                    {p.name.substring(0, 12)}
+                  </span>
                   <div className="flex flex-col">
                     {/* <p className="">{p.description.substring(0, 30)}</p> */}
                     <p className="">$ {p.price}</p>

@@ -18,7 +18,7 @@ const Products = () => {
       const { data } = await axios.get(url);
       if (data.success) {
         setProducts(data.products);
-        console.log(data.products);
+        // console.log(data.products);
       }
     } catch (error) {
       console.log(error);
