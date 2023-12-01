@@ -18,8 +18,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url =
-        "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/auth/register";
+      const url = `${import.meta.env.VITE_REACT_APP_URL}/api/v1/auth/register`;
       const res = await axios.post(url, {
         name,
         email,

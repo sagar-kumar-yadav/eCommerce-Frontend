@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { AiOutlineCaretUp, AiOutlineCaretDown } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
 const Dropdown = ({ title, items }) => {
@@ -27,7 +26,7 @@ const Dropdown = ({ title, items }) => {
         <ul className="transition duration-300">
           {items.map((item, i) => (
             <li key={i} className="flex px-4 py-3 hover:bg-gray-50">
-              <Link to={`/category/$c.slug`}></Link>
+              <Link to={`/category/${c.slug}`}></Link>
               {item.name}
             </li>
           ))}

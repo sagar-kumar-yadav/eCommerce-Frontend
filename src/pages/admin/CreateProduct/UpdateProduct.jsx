@@ -23,7 +23,9 @@ const UpdateProduct = () => {
   // get single product
   const getSingleProduct = async () => {
     try {
-      const url = `https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/get-product/${params.slug}`;
+      const url = `${
+        import.meta.env.VITE_REACT_APP_URL
+      }/api/v1/product/get-product/${params.slug}`;
       const { data } = await axios.get(url);
       setName(data.product.name);
       setId(data.product._id);
@@ -44,7 +46,9 @@ const UpdateProduct = () => {
   // get all category
   const getAllCategory = async () => {
     try {
-      const url = "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/category/get-category";
+      const url = `${
+        import.meta.env.VITE_REACT_APP_URL
+      }/api/v1/category/get-category`;
       const { data } = await axios.get(url);
 
       if (data?.success) {
@@ -72,7 +76,9 @@ const UpdateProduct = () => {
       photo && productData.append("photo", photo);
       productData.append("category", category);
 
-      const url = `https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/update-product/${id}`;
+      const url = `${
+        import.meta.env.VITE_REACT_APP_URL
+      }/api/v1/product/update-product/${id}`;
       const { data } = await axios.put(url, productData);
       console.log(data);
 
@@ -92,7 +98,9 @@ const UpdateProduct = () => {
     try {
       let answer = window.prompt("Are You Sure want to delete this product ? ");
       if (!answer) return;
-      const url = `https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/delete-product/${id}`;
+      const url = `${
+        import.meta.env.VITE_REACT_APP_URL
+      }/api/v1/product/delete-product/${id}`;
       const { data } = await axios.delete(url);
       toast.success("Product Deleted Successfully");
       navigate("/dashboard/admin/products");

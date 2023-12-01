@@ -23,7 +23,9 @@ const Login = () => {
     setLoadingState(true);
     try {
       const url =
-        "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/auth/login";
+        `${
+          import.meta.env.VITE_REACT_APP_URL
+        }/api/v1/auth/login`;
       const res = await axios.post(url, {
         email,
         password,

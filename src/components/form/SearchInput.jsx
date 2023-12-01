@@ -10,7 +10,9 @@ const SearchInput = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = `https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/search/${values.keyword}`;
+      const url = `${
+        import.meta.env.VITE_REACT_APP_URL
+      }/api/v1/product/search/${values.keyword}`;
       const { data } = await axios.get(url);
       setValues({ ...values, results: data });
       navigate("/search");

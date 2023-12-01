@@ -18,7 +18,9 @@ const Search = () => {
   // get all category
   const getAllCategory = async () => {
     try {
-      const url = "http://localhost:8080/api/v1/category/get-category";
+      const url = `${
+        import.meta.env.VITE_REACT_APP_URL
+      }/api/v1/category/get-category`;
       const { data } = await axios.get(url);
       if (data?.success) {
         setCategories(data?.category);

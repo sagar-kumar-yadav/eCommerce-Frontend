@@ -34,7 +34,7 @@ const Checkout = () => {
             <div className=" bg-[#ffffff]">
               <div className="flex justify-between px-4 pt-3">
                 <h4 className=" text-base">My information</h4>
-                <span class="material-symbols-outlined">border_color</span>
+                <span className="material-symbols-outlined">border_color</span>
               </div>
 
               <div className="px-4 py-2">

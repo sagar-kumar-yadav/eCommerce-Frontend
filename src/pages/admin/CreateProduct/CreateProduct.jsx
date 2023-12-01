@@ -17,11 +17,12 @@ const CreateProduct = () => {
   const [shipping, setShipping] = useState("");
   const [photo, setPhoto] = useState("");
 
-
   // get all category
   const getAllCategory = async () => {
     try {
-      const url = "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/category/get-category";
+      const url = `${
+        import.meta.env.VITE_REACT_APP_URL
+      }/api/v1/category/get-category`;
       const { data } = await axios.get(url);
       if (data?.success) {
         setCategories(data?.category);
@@ -49,7 +50,9 @@ const CreateProduct = () => {
       productData.append("category", category);
       console.log(productData);
 
-      const url = "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/create-product";
+      const url = `${
+        import.meta.env.VITE_REACT_APP_URL
+      }/api/v1/product/create-product`;
       const { data } = axios.post(url, productData);
 
       if (data?.success) {
@@ -189,7 +192,9 @@ const CreateProduct = () => {
                           accept="image/*"
                           className="sr-only"
                           // onChange={(e) => setPhoto(e.target.files[0])}
-                          onChange={(e) => {uploadImages(e.target.files)}}
+                          onChange={(e) => {
+                            uploadImages(e.target.files);
+                          }}
                           multiple
                           required
                         />

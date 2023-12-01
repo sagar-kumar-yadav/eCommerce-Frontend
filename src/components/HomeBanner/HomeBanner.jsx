@@ -43,8 +43,8 @@ const HomeBanner = () => {
           transform: `translateX(-${current * 100}%)`,
         }}
       >
-        {slides.map((s) => {
-          return <img src={s} />;
+        {slides.map((s, i) => {
+          return <img src={s} key={i} />;
         })}
       </div>
 

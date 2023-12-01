@@ -39,7 +39,7 @@ const Banner = () => {
     setCurrentSlide(slideIndex);
   };
 
-  console.log(slides[0]);
+  // console.log(slides[0]);
   return (
     <div className=" h-[780px] w-full m-auto relative group">
       <div

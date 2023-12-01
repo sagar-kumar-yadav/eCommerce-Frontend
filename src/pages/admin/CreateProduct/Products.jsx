@@ -12,7 +12,9 @@ const Products = () => {
   // get all products
   const getAllProducts = async () => {
     try {
-      const url = "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/get-products";
+      const url = `${
+        import.meta.env.VITE_REACT_APP_URL
+      }/api/v1/product/get-products`;
       const { data } = await axios.get(url);
       if (data.success) {
         setProducts(data.products);

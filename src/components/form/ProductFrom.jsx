@@ -43,7 +43,9 @@ const ProductForm = () => {
     }
 
     try {
-      const url = "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/create-product";
+      const url = `${
+        import.meta.env.VITE_REACT_APP_URL
+      }/api/v1/product/create-product`;
       const response = await fetch(url, {
         method: "POST",
         body: formPayload,
@@ -73,7 +75,9 @@ const ProductForm = () => {
   // get all category
   const getAllCategory = async () => {
     try {
-      const url = "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/category/get-category";
+      const url = `${
+        import.meta.env.VITE_REACT_APP_URL
+      }/api/v1/category/get-category1`;
       const { data } = await axios.get(url);
       if (data?.success) {
         setCategories(data?.category);

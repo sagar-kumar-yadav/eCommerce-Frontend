@@ -59,8 +59,8 @@ const CartPage = () => {
             </div>
 
             <div className="row border-top overflow-y-scroll">
-              {cart?.map((p) => (
-                <div className="row main align-items-center border-b border-solid border-[#dee2e6]">
+              {cart?.map((p, i) => (
+                <div className="row main align-items-center border-b border-solid border-[#dee2e6]" key={i}>
                   <button
                     onClick={() => {
                       removeCartItem(p._id);

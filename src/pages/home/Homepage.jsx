@@ -27,8 +27,9 @@ const Homepage = () => {
   // get all category
   const getAllCategory = async () => {
     try {
-      const url =
-        "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/category/get-category";
+      const url = `${
+        import.meta.env.VITE_REACT_APP_URL
+      }/api/v1/category/get-category`;
       const { data } = await axios.get(url);
       if (data?.success) {
         setCategories(data?.category);
@@ -44,7 +45,9 @@ const Homepage = () => {
   // get all products
   const getAllProducts = async () => {
     try {
-      const url = `https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/product-list/${page}`;
+      const url = `${
+        import.meta.env.VITE_REACT_APP_URL
+      }/api/v1/product/product-list/${page}`;
       const { data } = await axios.get(url);
       if (data.success) {
         setProducts(data.products);
@@ -59,8 +62,9 @@ const Homepage = () => {
   // get total count
   const getTotal = async () => {
     try {
-      const url =
-        "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/product-count";
+      const url = `${
+        import.meta.env.VITE_REACT_APP_URL
+      }/api/v1/product/product-count`;
       const { data } = await axios.get(url);
       setTotal(data?.total);
     } catch (error) {
@@ -81,7 +85,9 @@ const Homepage = () => {
   // load more
   const loadMore = async () => {
     try {
-      const url = `https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/product-list/${page}`;
+      const url = `${
+        import.meta.env.VITE_REACT_APP_URL
+      }/api/v1/product/product-list/${page}`;
       const { data } = await axios.get(url);
       setProducts([...products, ...data?.products]);
     } catch (error) {
@@ -103,8 +109,9 @@ const Homepage = () => {
   // get filtered product
   const filterProduct = async () => {
     try {
-      const url =
-        "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/product/product-filter";
+      const url = `${
+        import.meta.env.VITE_REACT_APP_URL
+      }/api/v1/product/product-filter`;
       const { data } = await axios.post(url, { checked, radio });
       setProducts(data?.products);
     } catch (error) {

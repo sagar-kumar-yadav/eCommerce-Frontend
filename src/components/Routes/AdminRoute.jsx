@@ -11,7 +11,9 @@ export default function AdminRoute() {
 
   useEffect(() => {
     const authCheck = async () => {
-      const url = "https://ecommerce-backend-api-uvqq.onrender.com/api/v1/auth/admin-auth";
+      const url = `${
+        import.meta.env.VITE_REACT_APP_URL
+      }/api/v1/auth/admin-auth`;
       const res = await axios.get(url);
       if (res.data.ok) {
         setOk(true);
