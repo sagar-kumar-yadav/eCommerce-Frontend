@@ -10,12 +10,46 @@ const CartPage = () => {
   const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
 
+  
+
+  // Function to remove item from cart
+  const removeCartItem = (pid) => {
+    try {
+      const updateCart = cart.filter((item) => item._id != pid);
+      setCart(updateCart);
+      localStorage.setItem("cart", JSON.stringify(updateCart));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Function to update quantity of cart item
+  const updateCartItemQuantity = (pid, action) => {
+    try {
+      const updatedCart = cart.map((item) => {
+        if (item._id === pid) {
+          if (action === "increase") {
+            item.quantity += 1;
+          } else if (action === "decrease" && item.quantity > 1) {
+            item.quantity -= 1;
+          }
+        }
+        return item;
+      });
+
+      setCart(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // total price
   const totalPrice = () => {
     try {
       let total = 0;
       cart?.map((item) => {
-        total = total + item.price;
+        total = total + item.price * item.quantity;
       });
       return total.toLocaleString("en-IN", {
         style: "currency",
@@ -25,20 +59,6 @@ const CartPage = () => {
       console.log(error);
     }
   };
-
-  // delete item
-  const removeCartItem = (pid) => {
-    try {
-      let myCart = [...cart];
-      let index = myCart.findIndex((item) => item._id === pid);
-      myCart.splice(index, 1);
-      setCart(myCart);
-      localStorage.setItem("cart", JSON.stringify(myCart));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <Layout>
       <div className="card pt-28 shadow-none bg-[#e0e5e9]">
@@ -88,15 +108,20 @@ const CartPage = () => {
                     </div>
                   </div>
                   <div className="col">
-                    <a href="#" className="dash_a">
+                    <Link
+                      className="dash_a"
+                      onClick={() => updateCartItemQuantity(p._id, "decrease")}
+                    >
                       -
-                    </a>
-                    <a href="#" className="border">
-                      1
-                    </a>
-                    <a href="#">+</a>
+                    </Link>
+                    <span className="border">{p.quantity}</span>
+                    <Link
+                      onClick={() => updateCartItemQuantity(p._id, "increase")}
+                    >
+                      +
+                    </Link>
                   </div>
-                  <div className="col">₹ {p.price}</div>
+                  <div className="col">₹ {p.price * p.quantity}</div>
                 </div>
               ))}
             </div>

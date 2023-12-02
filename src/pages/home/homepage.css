@@ -17,7 +17,7 @@
     width: 30%;
     background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 15px;
+    /* border-radius: 15px; */
     float: left;
     display: block;
     max-width: 263px;

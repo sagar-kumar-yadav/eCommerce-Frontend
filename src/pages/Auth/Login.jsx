@@ -20,12 +20,10 @@ const Login = () => {
   // form function
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoadingState(true);
+
     try {
-      const url =
-        `${
-          import.meta.env.VITE_REACT_APP_URL
-        }/api/v1/auth/login`;
+      const url = `${import.meta.env.VITE_REACT_APP_URL}/api/v1/auth/login`;
+      setLoadingState(true);
       const res = await axios.post(url, {
         email,
         password,

@@ -98,7 +98,7 @@ const ForgotPassword = () => {
               <i className="zmdi zmdi-email" />
             </div>
 
-            <button className="reg-btn">
+            <button className="reg-btn w-full">
               {isLoading ? (
                 <Loader
                   text={"Forgetting"}

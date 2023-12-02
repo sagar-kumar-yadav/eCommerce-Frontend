@@ -4,6 +4,8 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../components/layout/Layout";
 import "./auth.css";
+import { useLoading } from "../../context/loading";
+import Loader from "../../components/Loader/Loader";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -13,12 +15,14 @@ const Register = () => {
   const [address, setAddress] = useState("");
   const [answer, setAnswer] = useState("");
   const navigate = useNavigate();
+  const { isLoading, setLoadingState } = useLoading();
 
   // form function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const url = `${import.meta.env.VITE_REACT_APP_URL}/api/v1/auth/register`;
+      setLoadingState(true);
       const res = await axios.post(url, {
         name,
         email,
@@ -30,12 +34,15 @@ const Register = () => {
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
         navigate("/login");
+        setLoadingState(false);
       } else {
         toast.error(res.data.message);
+        setLoadingState(false);
       }
     } catch (error) {
       console.log(error);
       toast.error("something went wrong");
+      setLoadingState(false);
     }
   };
 
@@ -132,8 +139,17 @@ const Register = () => {
               <i className="zmdi zmdi-email" />
             </div>
 
-            <button className="reg-btn">
-              Register
+            <button className="reg-btn w-full">
+              {isLoading ? (
+                <Loader
+                  text={"Registering..."}
+                  color={"#ffffff"}
+                  loading={isLoading}
+                />
+              ) : (
+                "Register"
+              )}
+
               <i className="zmdi zmdi-arrow-right" />
             </button>
           </form>

@@ -88,10 +88,13 @@ const Homepage = () => {
       const url = `${
         import.meta.env.VITE_REACT_APP_URL
       }/api/v1/product/product-list/${page}`;
+      setLoadingState(true);
       const { data } = await axios.get(url);
       setProducts([...products, ...data?.products]);
+      setLoadingState(false);
     } catch (error) {
       console.log(error);
+      setLoadingState(false);
     }
   };
 
@@ -239,10 +242,8 @@ const Homepage = () => {
             <button
               className="bg-[#222] text-white rounded"
               onClick={(e) => {
-                setLoadingState(false);
                 e.preventDefault();
                 setPage(page + 1);
-                setLoadingState(true);
               }}
             >
               {isLoading ? (
