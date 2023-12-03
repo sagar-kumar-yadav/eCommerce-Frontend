@@ -61,7 +61,7 @@ const CartPage = () => {
   };
   return (
     <Layout>
-      <div className="card pt-28 shadow-none bg-[#e0e5e9]">
+      <div className="card py-28 shadow-none bg-[#ffffff]">
         <div className="flex gap-4 max-md:flex-wrap">
           <div className="col-md-8 cart max-md:w-full">
             <div className="title mb-10">

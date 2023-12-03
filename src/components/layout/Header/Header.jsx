@@ -63,28 +63,25 @@ const Header = () => {
 
   return (
     <>
-      <header className="flex justify-between items-center h-[70px] top-0 z-50 fixed bg-[#0a0e11] w-full">
+      <header className="flex justify-between items-center h-[70px] top-0 z-50 fixed bg-[#ffffff] w-full text-[#272626]">
         {/* logo and app name header here */}
         <Link
           to="/"
-          className={`flex items-center gap-4 ml-[2%] max-lg:ml-[7%] max-sm:ml-[9%] w-32 ${
+          className={`flex items-center gap-4 ml-[4%] max-lg:ml-[7%] max-sm:ml-[9%] w-32 ${
             isSearchOpen ? "hidden" : "block"
           }`}
         >
           <div className="flex items-center ">
             <div className=" md:py-0 w-28">
               {/* <img src="/src/assets/text_outfit_com.png" alt="logo-png" /> */}
-              <span className=" text-white text-2xl font-bold italic">
-                urbanethnic
-              </span>
+              <span className="  text-2xl font-bold italic">URBANETHNIC</span>
             </div>
           </div>
         </Link>
-        <Navbar />
         <SearchInput />
 
-        <div className=" px-12 max-md:px-4 max-lg:fixed right-0">
-          <ul className="flex items-center text-white gap-2">
+        <div className=" px-12 max-md:px-4 fixed right-0">
+          <ul className="flex items-center  gap-2">
             {/* if not user then show register and login page ------------------------------------------  */}
             {!auth.user ? (
               <>
@@ -148,7 +145,7 @@ const Header = () => {
                     className={`w-12 ${isSearchOpen ? "hidden" : "block"}`}
                     onClick={handleSearchClick}
                   >
-                    <IoSearch size={26} className=" text-white" />
+                    <IoSearch size={26} className=" " />
                   </button>
                 </div>
                 <div
@@ -170,14 +167,14 @@ const Header = () => {
                       className="w-8 h-8 border-tl-4 border-bl-4 rounded-r-none text-[#282c3f]"
                       onClick={handleSearchClick}
                     >
-                      <AiOutlineClose size={26} className={`text-white `} />
+                      <AiOutlineClose size={26} className={` `} />
                     </button>
                   </form>
                 </div>
 
                 {/* -------------------------------- */}
                 <ul
-                  className={`flex items-center gap-2 ${
+                  className={`flex items-center gap-2  ${
                     isSearchOpen ? "hidden" : "block"
                   }`}
                 >
@@ -186,9 +183,10 @@ const Header = () => {
                       to="/cart"
                       className="flex md:inline-flex p-2 items-center "
                     >
-                      <span>
-                        <FaRegHeart className=" fill-white" size={24} />
-                      </span>
+                      {/* <span>
+                        <FaRegHeart className=" fill-[#272626]" size={24} />
+                      </span> */}
+                      <span class="material-symbols-outlined">favorite</span>
                     </NavLink>
                   </li>
                 </ul>
@@ -199,11 +197,12 @@ const Header = () => {
                 to="/cart"
                 className="flex md:inline-flex p-2 items-center mt-[14px]"
               >
-                <span>
-                  <SlBag className=" fill-white" size={24} />
-                </span>
+                {/* <span>
+                  <SlBag className=" fill-[#272626]" size={24} />
+                </span> */}
+                <span class="material-symbols-outlined">shopping_bag</span>
               </NavLink>
-              <div className=" relative h-4 w-4 rounded-full justify-center bottom-9 left-8 flex items-center text-xs">
+              <div className=" relative h-4 w-4 rounded-full justify-center bottom-9 left-7 flex items-center text-xs bg-black text-white">
                 <span>{cart?.length}</span>
               </div>
             </li>
@@ -211,7 +210,7 @@ const Header = () => {
         </div>
 
         {/* mobile device -----------------------------------------------------------------------*/}
-        <div className=" lg:hidden fixed left-4 max-sm:left-2">
+        <div className=" fixed left-4 max-sm:left-2 top-2">
           <button
             type="button"
             className="w-8"
@@ -220,13 +219,10 @@ const Header = () => {
             aria-expanded="false"
             onClick={toggleMenu}
           >
-            <BiMenu
-              size={26}
-              className={`${isOpen ? "hidden" : "block"} text-white`}
-            />
+            <BiMenu size={26} className={`${isOpen ? "hidden" : "block"} `} />
           </button>
         </div>
-        <div className=" lg:hidden fixed left-4 max-sm:left-2">
+        <div className=" fixed left-4 max-sm:left-2 top-2">
           <button
             type="button"
             className="w-8"
@@ -237,7 +233,7 @@ const Header = () => {
           >
             <AiOutlineClose
               size={26}
-              className={`${isOpen ? "block" : "hidden"} text-white`}
+              className={`${isOpen ? "block" : "hidden"} `}
             />
           </button>
         </div>
@@ -245,7 +241,7 @@ const Header = () => {
         <div
           className={`${
             isOpen ? "block pt-4" : "hidden"
-          } lg:hidden bg-white text-black `}
+          }  bg-white text-black `}
         >
           <div className="fixed top-[70px] left-0 bottom-0 text-black bg-white w-5/6 max-w-[20rem] max-sm:max-w-[15rem] flex flex-col">
             {categories?.map((c) => (
@@ -257,20 +253,31 @@ const Header = () => {
                 {c.name}{" "}
               </Link>
             ))}
-
-            <div className="flex justify-center relative top-40">
-              <NavLink
-                to="/register"
-                className="flex md:inline-flex p-2 items-center "
-              >
-                <span>Register</span>
-              </NavLink>
-              <NavLink
-                to="/login"
-                className="flex md:inline-flex p-2 items-center "
-              >
-                <span>Login</span>
-              </NavLink>
+            <div className="flex absolute bottom-8 justify-center w-full">
+              {!auth.user ? (
+                <>
+                  <Link
+                    to="/register"
+                    className="flex md:inline-flex p-2 items-center "
+                  >
+                    <span>Register</span>
+                  </Link>
+                  <Link
+                    to="/login"
+                    className="flex md:inline-flex p-2 items-center "
+                  >
+                    <span>Login</span>
+                  </Link>
+                </>
+              ) : (
+                <Link
+                  to="/login"
+                  className="flex md:inline-flex p-2 items-center "
+                  onClick={handleLogout}
+                >
+                  <span>Logout</span>
+                </Link>
+              )}
             </div>
           </div>
         </div>
