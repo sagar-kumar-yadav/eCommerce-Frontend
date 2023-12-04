@@ -114,14 +114,14 @@ const CartPage = () => {
                     >
                       -
                     </Link>
-                    <span className="border">{p.quantity}</span>
+                    <span className="border">{i}</span>
                     <Link
                       onClick={() => updateCartItemQuantity(p._id, "increase")}
                     >
                       +
                     </Link>
                   </div>
-                  <div className="col">₹ {p.price * p.quantity}</div>
+                  <div className="col">₹ {p.price * p * i}</div>
                 </div>
               ))}
             </div>

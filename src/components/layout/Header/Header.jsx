@@ -15,6 +15,8 @@ import useCategory from "../../../hooks/useCategory";
 import { IoSearch } from "react-icons/io5";
 import { useSearch } from "../../../context/search";
 import axios from "axios";
+import { FiSun } from "react-icons/fi";
+import { MdOutlineNightlight } from "react-icons/md";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -63,7 +65,11 @@ const Header = () => {
 
   return (
     <>
-      <header className="flex justify-between items-center h-[70px] top-0 z-50 fixed bg-[#ffffff] w-full text-[#272626]">
+      <header
+        className={`flex justify-between items-center h-[70px] top-0 z-50 fixed  w-full
+         bg-white
+      `}
+      >
         {/* logo and app name header here */}
         <Link
           to="/"
@@ -74,14 +80,21 @@ const Header = () => {
           <div className="flex items-center ">
             <div className=" md:py-0 w-28">
               {/* <img src="/src/assets/text_outfit_com.png" alt="logo-png" /> */}
-              <span className="  text-2xl font-bold italic">URBANETHNIC</span>
+              <span className="  text-2xl font-bold italic max-sm:hidden">
+                URBANETHNIC
+              </span>
+              <span className="  text-2xl font-bold italic max-sm:block sm:hidden">
+                U<span className="text-sm">rban</span>
+                <span>E</span>
+                <span className="text-sm">thnic</span>
+              </span>
             </div>
           </div>
         </Link>
         <SearchInput />
 
         <div className=" px-12 max-md:px-4 fixed right-0">
-          <ul className="flex items-center  gap-2">
+          <ul className="flex items-center">
             {/* if not user then show register and login page ------------------------------------------  */}
             {!auth.user ? (
               <>
@@ -142,10 +155,10 @@ const Header = () => {
                 <div className=" sm:hidden fixed right-24">
                   <button
                     // className="w-12"
-                    className={`w-12 ${isSearchOpen ? "hidden" : "block"}`}
+                    className={`w-8 ${isSearchOpen ? "hidden" : "block"}`}
                     onClick={handleSearchClick}
                   >
-                    <IoSearch size={26} className=" " />
+                    <IoSearch size={24} className=" " />
                   </button>
                 </div>
                 <div
@@ -174,7 +187,7 @@ const Header = () => {
 
                 {/* -------------------------------- */}
                 <ul
-                  className={`flex items-center gap-2  ${
+                  className={`flex items-center   ${
                     isSearchOpen ? "hidden" : "block"
                   }`}
                 >
@@ -186,7 +199,9 @@ const Header = () => {
                       {/* <span>
                         <FaRegHeart className=" fill-[#272626]" size={24} />
                       </span> */}
-                      <span class="material-symbols-outlined">favorite</span>
+                      <span className="material-symbols-outlined">
+                        favorite
+                      </span>
                     </NavLink>
                   </li>
                 </ul>
@@ -200,7 +215,7 @@ const Header = () => {
                 {/* <span>
                   <SlBag className=" fill-[#272626]" size={24} />
                 </span> */}
-                <span class="material-symbols-outlined">shopping_bag</span>
+                <span className="material-symbols-outlined">shopping_bag</span>
               </NavLink>
               <div className=" relative h-4 w-4 rounded-full justify-center bottom-9 left-7 flex items-center text-xs bg-black text-white">
                 <span>{cart?.length}</span>
@@ -243,7 +258,7 @@ const Header = () => {
             isOpen ? "block pt-4" : "hidden"
           }  bg-white text-black `}
         >
-          <div className="fixed top-[70px] left-0 bottom-0 text-black bg-white w-5/6 max-w-[20rem] max-sm:max-w-[15rem] flex flex-col">
+          <div className=" fixed top-[70px] left-0 bottom-0 text-black bg-white dark:bg-black w-5/6 max-w-[20rem] max-sm:max-w-[15rem] flex flex-col ">
             {categories?.map((c) => (
               <Link
                 to={`/category/${c.slug}`}
@@ -253,6 +268,7 @@ const Header = () => {
                 {c.name}{" "}
               </Link>
             ))}
+
             <div className="flex absolute bottom-8 justify-center w-full">
               {!auth.user ? (
                 <>

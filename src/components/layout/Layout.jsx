@@ -5,8 +5,12 @@ import { Helmet } from "react-helmet";
 import Header from "./Header/Header";
 
 const Layout = ({ children, title, description, keywords, author }) => {
+  
+
   return (
-    <div>
+    <div
+      
+    >
       <Helmet>
         <meta charSet="utf-8" />
         <meta name="description" content={description} />
@@ -15,7 +19,7 @@ const Layout = ({ children, title, description, keywords, author }) => {
 
         <title>{title}</title>
       </Helmet>
-      <Header />
+      <Header/>
       {/* <main style={{ minHeight: "74vh" }}> */}
       <div>
         <Toaster />
@@ -27,10 +31,10 @@ const Layout = ({ children, title, description, keywords, author }) => {
 };
 
 Layout.defaultProps = {
-  title: "Ecommerce App - shop now",
+  title: "URBANETHNIC - shop now",
   description: "mern stack project",
   keywords: "mern, react, mongodb, node",
-  author: "Sagarkrydv",
+  author: "sagarkrydv",
 };
 
 export default Layout;

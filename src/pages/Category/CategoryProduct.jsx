@@ -2,11 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Layout from "../../components/layout/Layout";
+import { useCart } from "../../context/cart";
+import toast from "react-hot-toast";
 
 const CategoryProduct = () => {
   const params = useParams();
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
+  const [cart, setCart] = useCart();
 
   useEffect(() => {
     if (params?.slug) {
@@ -74,6 +77,7 @@ const CategoryProduct = () => {
                     onClick={() => {
                       setCart([...cart, p]);
                       toast.success("Item Add to Cart");
+                      console.log(cart);
                     }}
                   >
                     <div className="flex items-center gap-2">

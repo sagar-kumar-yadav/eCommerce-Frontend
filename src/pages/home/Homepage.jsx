@@ -72,20 +72,21 @@ const Homepage = () => {
   }, []);
 
   // get total count
-  const getTotal = async () => {
-    try {
-      const url = `${
-        import.meta.env.VITE_REACT_APP_URL
-      }/api/v1/product/product-count`;
-      const { data } = await axios.get(url);
-      setTotal(data?.total);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getTotal();
-  }, []);
+  // const getTotal = async () => {
+  //   try {
+  //     const url = `${
+  //       import.meta.env.VITE_REACT_APP_URL
+  //     }/api/v1/product/product-count`;
+  //     const { data } = await axios.get(url);
+  //     setTotal(data?.total);
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   getTotal();
+  // }, []);
 
   // useEffect(() => {
   //   if (page === 1) {
@@ -148,8 +149,8 @@ const Homepage = () => {
       <MiddleQuote />
       <MiddleCategories />
 
-      <div className=" relative top-80 max-sm:top-48">
-        <div className=" text-4xl uppercase font-semi-bold ml-[4%] mb-4 w-[90%] max-sm:text-2xl">
+      <div className=" relative top-80 max-sm:top-56">
+        <div className=" text-4xl uppercase font-semi-bold ml-[4%] mb-4 w-[90%] max-sm:text-2xl pt-8">
           Featured Product
         </div>
 
@@ -232,6 +233,7 @@ const Homepage = () => {
                   setCart([...cart, p]);
                   localStorage.setItem("cart", JSON.stringify([...cart, p]));
                   toast.success("Item Add to Cart");
+                  
                 }}
               >
                 <div className="flex items-center gap-2">

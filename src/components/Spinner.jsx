@@ -8,7 +8,7 @@ const Spinner = ({ path = "login" }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCount((prevValue) => --prevValue);
-    }, 1000);
+    }, 2000);
     count === 0 &&
       navigate(`/${path}`, {
         state: location.pathname,
@@ -20,7 +20,7 @@ const Spinner = ({ path = "login" }) => {
   return (
     <>
       <div
-        className="d-flex flex-column justify-content-center align-items-center"
+        className="d-flex flex-column justify-content-center align-items-center gap-7"
         style={{ height: "100vh" }}
       >
         <h1 className="Text-center">redirecting to you in {count} second</h1>

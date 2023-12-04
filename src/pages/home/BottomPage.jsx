@@ -2,7 +2,7 @@ import React from "react";
 
 const BottomPage = () => {
   return (
-    <div className="flex flex-col items-center w-[90%] m-auto pt-20 relative top-64 h-96 max-sm:top-40">
+    <div className="flex flex-col items-center w-[90%] m-auto pt-20 relative top-80 h-[42rem] max-md:h-[33rem] max-sm:top-40">
       <div className=" text-5xl font-semibold">NEWSLETTER</div>
       <div className="w-[50%] text-center pt-4 max-sm:w-full">
         Get newsletter update on upcoming products and the best discount on an

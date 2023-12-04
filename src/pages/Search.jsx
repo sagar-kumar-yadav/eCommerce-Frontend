@@ -39,26 +39,29 @@ const Search = () => {
   return (
     <Layout>
       <div className="">
+        {/* heading -----------------------------*/}
         <h1 className="mt-28 text-center text-4xl font-bold mb-8">
           Results for "{values.keyword}"
         </h1>
+        {/* product length ------------------------------- */}
         <h6 className="text-center">
           {values?.results.length < 1
             ? "No Product Found"
             : `Products ${values?.results.length}`}
         </h6>
 
-        <div className="home_content w-[86%] m-auto pt-10">
+            {/*  */}
+        <div className="home_content w-[86%] m-auto pt-10 max-md:w-[96%] max-lg:w-[94%]">
           <div className="product_content ">
             {/* {JSON.stringify(radio, null, 4)} */}
 
-            <div className="all_products_show_cont">
+            <div className="all_products_show_cont max-md:gap-8 max-lg:gap-8">
               {values?.results.map((p) => (
                 <div
                   key={p._id}
-                  className="product_cont w-64 items-center justify-center p-3 mb-8"
+                  className="product_cont items-center justify-center p-3 mb-8 max-md:w-40 max-lg:mb-0"
                 >
-                  <div className="product_img cursor-pointer">
+                  <div className="product_img cursor-pointer max-sm:w-36 max-lg:w-36">
                     <img
                       src={p.photos[0]}
                       className=""
@@ -66,7 +69,7 @@ const Search = () => {
                       onClick={() => navigate(`/product/${p.slug}`)}
                     />
                   </div>
-                  <div className="product_name">{p.name}</div>
+                  <div className="max-md:hidden max-md:text-sm">{p.name}</div>
                   <div className="flex flex-col">
                     {/* <p className="">{p.description.substring(0, 30)}</p> */}
                     <p className="">$ {p.price}</p>
