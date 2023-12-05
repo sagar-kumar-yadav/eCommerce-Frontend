@@ -144,10 +144,11 @@ const Homepage = () => {
   //   if (checked.length || radio.length) filterProduct();
   // }, [checked, radio]);
 
-  console.log(cart);
+  // console.log(cart);
   const addToCart = (data) => {
     // console.log(data);
     setCart([...cart, data]);
+    localStorage.setItem("cart", JSON.stringify([...cart, data]));
     
   };
 
