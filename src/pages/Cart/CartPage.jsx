@@ -25,16 +25,18 @@ const CartPage = () => {
 
   // Function to update quantity of cart item
   const updateCartItemQuantity = (pid, action) => {
+    console.log(pid, action);
     try {
       const updatedCart = cart.map((item) => {
         if (item._id === pid) {
           if (action === "increase") {
-            item.quantity += 1;
-          } else if (action === "decrease" && item.quantity > 1) {
-            item.quantity -= 1;
+            item.q += 1;
+          } else if (action === "decrease" && item.q > 1) {
+            item.q -= 1;
           }
         }
         return item;
+        console.log(item);
       });
 
       setCart(updatedCart);
@@ -49,7 +51,7 @@ const CartPage = () => {
     try {
       let total = 0;
       cart?.map((item) => {
-        total = total + item.price * item.quantity;
+        total = total + item.price ;
       });
       return total.toLocaleString("en-IN", {
         style: "currency",
@@ -114,14 +116,14 @@ const CartPage = () => {
                     >
                       -
                     </Link>
-                    <span className="border">{i}</span>
+                    <span className="border">{1}</span>
                     <Link
                       onClick={() => updateCartItemQuantity(p._id, "increase")}
                     >
                       +
                     </Link>
                   </div>
-                  <div className="col">₹ {p.price * p * i}</div>
+                  <div className="col">₹ {p.price}</div>
                 </div>
               ))}
             </div>

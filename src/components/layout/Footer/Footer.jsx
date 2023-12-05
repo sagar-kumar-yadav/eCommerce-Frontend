@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="footer relative bg-black pb-6 text-white bottom-0">
+    <footer className="footer relative bg-black pb-6 text-white bottom-0 w-full">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap text-left lg:text-left pt-8">
           <div className="w-full lg:w-6/12 px-4 ">

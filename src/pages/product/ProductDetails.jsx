@@ -16,7 +16,9 @@ const ProductDetails = () => {
   // get single product
   const getProduct = async () => {
     try {
-      const url = `http://localhost:8080/api/v1/product/get-product/${params.slug}`;
+      const url = `${
+        import.meta.env.VITE_REACT_APP_URL
+      }/api/v1/product/get-product/${params.slug}`;
       const { data } = await axios.get(url);
       if (data.success) {
         setProduct(data?.product);
@@ -27,6 +29,8 @@ const ProductDetails = () => {
       console.log(error);
     }
   };
+
+  console.log(product);
 
   // get  similar product
   // const getSimilarProduct = async (pid, cid) => {
@@ -43,15 +47,13 @@ const ProductDetails = () => {
   return (
     <div>
       {/* <h1>Product Details</h1> */}
-      {JSON.stringify(product, null, 4)}
+      {/* {JSON.stringify(product, null, 4)} */}
 
       <div className="">
         <div className="">
-          <img
-            src={product.photos[0]}
-            className=""
-            alt={product.name}
-          />
+          {/* {product?.map((p) => (
+            <img src={p.photos[0]} className="" alt={p.name} />
+          ))} */}
         </div>
         <div className="">
           <h1>Product details</h1>
@@ -68,14 +70,13 @@ const ProductDetails = () => {
         {relatedProducts.length < 1 && <p>No similar product found</p>}
         <div className="all_products_show_cont">
           {relatedProducts?.map((p) => (
-            <div key={p._id} className="product_cont w-64 items-center justify-center">
+            <div
+              key={p._id}
+              className="product_cont w-64 items-center justify-center"
+            >
               <div className="product_name">{p.name}</div>
               <div className="product_img">
-                <img
-                  src={`http://localhost:8080/api/v1/product/product-photo/${p._id}`}
-                  className=""
-                  alt={p.name}
-                />
+                <img src={p.photos[0]} className="" alt={p.name} />
               </div>
 
               <div className="flex flex-col">

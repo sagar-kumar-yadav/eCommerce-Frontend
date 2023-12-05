@@ -25,6 +25,7 @@ const Homepage = () => {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(1);
   const [cart, setCart] = useCart();
+  const [addInCart, setAddInCart] = useState([])
   const { isLoading, setLoadingState } = useLoading();
   const [featureProduct, setFeatureProduct] = useState([]);
 
@@ -143,6 +144,13 @@ const Homepage = () => {
   //   if (checked.length || radio.length) filterProduct();
   // }, [checked, radio]);
 
+  console.log(cart);
+  const addToCart = (data) => {
+    // console.log(data);
+    setCart([...cart, data]);
+    
+  };
+
   return (
     <Layout title={"All Products - Best Offers"}>
       <Banner />
@@ -205,7 +213,7 @@ const Homepage = () => {
               </div>
               {/* wishlist button */}
               {/* <div className=" absolute top-0"> */}
-                {/* <button
+              {/* <button
                   className=" cursor-pointer absolute w-8 h-8 left-16 top-8 transition duration-300 max-md:left-8"
                   onClick={handleToggleWishlist}
                 >
@@ -229,12 +237,13 @@ const Homepage = () => {
 
               <button
                 className="bg-[#222] text-white w-40 rounded h-8 mt-2 max-md:w-24"
-                onClick={() => {
-                  setCart([...cart, p]);
-                  localStorage.setItem("cart", JSON.stringify([...cart, p]));
-                  toast.success("Item Add to Cart");
-                  
-                }}
+                // onClick={() => {
+                //   setCart([...cart, p]);
+                //   localStorage.setItem("cart", JSON.stringify([...cart, p]));
+                //   toast.success("Item Add to Cart");
+
+                // }}
+                onClick={() => addToCart(p)}
               >
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined">
