@@ -63,7 +63,9 @@ const CategoryProduct = () => {
                       onClick={() => navigate(`/product/${p.slug}`)}
                     />
                   </div>
-                  <span className=" max-md:hidden max-md:text-sm">{p.name}</span>
+                  <span className=" max-md:hidden max-md:text-sm">
+                    {p.name}
+                  </span>
                   <span className=" max-md:block md:hidden">
                     {p.name.substring(0, 12)}
                   </span>
@@ -76,8 +78,12 @@ const CategoryProduct = () => {
                     className="bg-[#222] text-white w-24 rounded h-8"
                     onClick={() => {
                       setCart([...cart, p]);
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify([...cart, p])
+                      );
                       toast.success("Item Add to Cart");
-                      console.log(cart);
+                     
                     }}
                   >
                     <div className="flex items-center gap-2">
